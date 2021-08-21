@@ -58,4 +58,10 @@ public class SocketProxy
 		Debug.Log("Finish setting up socket client!");
 		return client;
 	}
+	public void login(string username, string password)
+	{
+		userAuthenInfo.Username = username;
+		userAuthenInfo.Password = password;
+		client.connect(host, port);
+	}
 }
