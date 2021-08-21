@@ -12,5 +12,6 @@ public class LoginButton : MonoBehaviour
     {
         Debug.Log("Username: " + usernameInput.text);
         Debug.Log("Password: " + passwordInput.text);
+        SocketProxy.GetInstance().login(usernameInput.text, passwordInput.text);
     }
 }
