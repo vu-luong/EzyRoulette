@@ -1,18 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using com.tvd12.ezyfoxserver.client.request;
+using com.tvd12.ezyfoxserver.client.util;
 
-public class SocketRequest : MonoBehaviour
+public class SocketRequest : EzyLoggable
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+	private static readonly SocketRequest INSTANCE = new SocketRequest();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	public static SocketRequest GetInstance()
+	{
+		return INSTANCE;
+	}
+	public void sendAppAccessRequest()
+	{
+		var client = SocketProxy.GetInstance().Client;
+		var request = new EzyAppAccessRequest(SocketProxy.APP_NAME);
+		client.send(request);
+	}
 }
