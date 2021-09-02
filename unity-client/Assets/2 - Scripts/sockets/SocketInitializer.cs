@@ -1,5 +1,6 @@
 using System;
 using com.tvd12.ezyfoxserver.client;
+using com.tvd12.ezyfoxserver.client.logger;
 using UnityEngine;
 
 public class SocketInitializer : MonoBehaviour
@@ -25,6 +26,10 @@ public class SocketInitializer : MonoBehaviour
 
 	private void Start()
 	{
+		// Enable EzyUnity Logger
+		EzyLoggerFactory.setLoggerSupply(type => new EzyUnityLogger(type));
+		
+		// Setup socket client
 		var socketProxy = SocketProxy.GetInstance();
 		client = socketProxy.setup(host, port);
 	}

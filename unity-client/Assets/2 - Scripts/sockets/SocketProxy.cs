@@ -1,6 +1,7 @@
 using com.tvd12.ezyfoxserver.client;
 using com.tvd12.ezyfoxserver.client.config;
 using com.tvd12.ezyfoxserver.client.constant;
+using com.tvd12.ezyfoxserver.client.entity;
 using com.tvd12.ezyfoxserver.client.handler;
 using com.tvd12.ezyfoxserver.client.request;
 using UnityEngine;
@@ -17,12 +18,32 @@ class HandshakeHandler : EzyHandshakeHandler
 	}
 }
 
+class LoginSuccessHandler : EzyLoginSuccessHandler
+{
+	protected override void handleLoginSuccess(EzyData responseData)
+	{
+		logger.debug("Login successfully!");
+		// send the appAccessRequest to server
+		SocketRequest.GetInstance().sendAppAccessRequest();
+	}
+}
+
+class AppAccessHandler : EzyAppAccessHandler
+{
+	protected override void postHandle(EzyApp app, EzyArray data)
+	{
+		logger.debug("App access successfully!");
+		// Start game logic
+	}
+}
+
 public class SocketProxy
 {
 	private static readonly SocketProxy INSTANCE = new SocketProxy();
 
 	public const string ZONE_NAME = "EzyRoulette";
 	public const string PLUGIN_NAME = "EzyRoulette";
+	public const string APP_NAME = "EzyRoulette";
 
 	private string host;
 	private int port;
@@ -54,6 +75,8 @@ public class SocketProxy
 		
 		// Add some data handlers to setup
 		setup.addDataHandler(EzyCommand.HANDSHAKE, new HandshakeHandler());
+		setup.addDataHandler(EzyCommand.LOGIN, new LoginSuccessHandler());
+		setup.addDataHandler(EzyCommand.APP_ACCESS, new AppAccessHandler());
 
 		Debug.Log("Finish setting up socket client!");
 		return client;
