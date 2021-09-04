@@ -1,3 +1,4 @@
+using System;
 using com.tvd12.ezyfoxserver.client;
 using com.tvd12.ezyfoxserver.client.config;
 using com.tvd12.ezyfoxserver.client.constant;
@@ -30,10 +31,12 @@ class LoginSuccessHandler : EzyLoginSuccessHandler
 
 class AppAccessHandler : EzyAppAccessHandler
 {
+	public static event Action appAccessSuccessEvent;
 	protected override void postHandle(EzyApp app, EzyArray data)
 	{
 		logger.debug("App access successfully!");
 		// Start game logic
+		appAccessSuccessEvent?.Invoke();
 	}
 }
 
