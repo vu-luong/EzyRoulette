@@ -15,4 +15,10 @@ public class SocketRequest : EzyLoggable
 		var request = new EzyAppAccessRequest(SocketProxy.APP_NAME);
 		client.send(request);
 	}
+	public void sendSpinRequest()
+	{
+		var client = SocketProxy.GetInstance().Client;
+		var app = client.getApp();
+		app?.send("spin");
+	}
 }
