@@ -40,6 +40,21 @@ class AppAccessHandler : EzyAppAccessHandler
 	}
 }
 
+#region App Data Handler
+
+class SpinResponseHandler : EzyAbstractAppDataHandler<EzyObject>
+{
+	public static event Action<int> spinResponseEvent;
+	protected override void process(EzyApp app, EzyObject data)
+	{
+		logger.debug("Receive spin response: " + data);
+		var result = data.get<int>("result");
+		spinResponseEvent?.Invoke(result);
+	}
+}
+
+#endregion
+
 public class SocketProxy
 {
 	private static readonly SocketProxy INSTANCE = new SocketProxy();
