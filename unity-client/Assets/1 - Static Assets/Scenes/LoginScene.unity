@@ -567,7 +567,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c77baf5fa4e13de909e8a96b67aac861, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  host: 127.0.0.1
+  host: 143.244.154.246
   port: 3005
 --- !u!4 &860758178
 Transform:
