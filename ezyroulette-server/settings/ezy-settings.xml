@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings
+	xsi:schemaLocation="http://www.tvd12.com/schema/ezyfox/settings
+  		ezy-settings-1.0.0.xsd"
+	xmlns="http://www.tvd12.com/schema/ezyfox/settings" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    
+    <node-name>localhost</node-name>
+    
+    <streaming>
+		<enable>false</enable>
+	</streaming>
+	
+	<socket>
+		<port>3005</port>
+        <active>true</active>
+        <ssl-active>false</ssl-active>
+		<max-request-size>2048</max-request-size>
+		<codec-creator>com.tvd12.ezyfox.codec.MsgPackCodecCreator</codec-creator>
+	</socket>
+    
+    <udp>
+		<port>2611</port>
+		<address>0.0.0.0</address>
+		<active>true</active>
+		<max-request-size>1024</max-request-size>
+	</udp>
+	
+	<web-socket>
+		<port>2208</port>
+        <active>true</active>
+        <ssl-port>2812</ssl-port>
+		<ssl-active>false</ssl-active>
+		<ssl-config>
+			<file>ssl-config.properties</file>
+			<loader>com.tvd12.ezyfoxserver.ssl.EzySimpleSslConfigLoader</loader>
+			<context-factory-builder>com.tvd12.ezyfoxserver.ssl.EzySimpleSslContextFactoryBuilder</context-factory-builder>
+		</ssl-config>
+        <max-frame-size>2048</max-frame-size>
+		<codec-creator>com.tvd12.ezyfox.codec.JacksonCodecCreator</codec-creator>
+	</web-socket>
+	
+	<administrators>
+		<administrator>
+			<username>admin</username>
+			<password>admin</password>
+			<access-token>admin</access-token>
+		</administrator>
+	</administrators>
+	
+	<session-management>
+		<session-allow-reconnect>true</session-allow-reconnect>
+		<session-max-idle-time>150</session-max-idle-time>
+		<session-max-waiting-time>15</session-max-waiting-time>
+		<session-max-request-per-second>
+			<value>300</value>
+			<action>DISCONNECT_SESSION</action>
+		</session-max-request-per-second>
+	</session-management>
+    
+    <zones>
+		<zone>
+			<name>example</name>
+			<config-file>ezy-zone-settings.xml</config-file>
+			<active>true</active>
+		</zone>
+	    <zone>
+			<name>EzyRoulette</name>
+			<config-file>EzyRoulette-zone-settings.xml</config-file>
+			<active>true</active>
+		</zone>
+
+	</zones>
+	
+</settings>
+
+<!-- http://localhost:8080/schema/ezyfox/settings/ -->
