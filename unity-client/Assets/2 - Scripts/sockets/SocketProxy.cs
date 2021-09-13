@@ -96,6 +96,9 @@ public class SocketProxy
 		setup.addDataHandler(EzyCommand.LOGIN, new LoginSuccessHandler());
 		setup.addDataHandler(EzyCommand.APP_ACCESS, new AppAccessHandler());
 
+		var setApp = setup.setupApp(APP_NAME);
+		setApp.addDataHandler("spin", new SpinResponseHandler());
+
 		Debug.Log("Finish setting up socket client!");
 		return client;
 	}
