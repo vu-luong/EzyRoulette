@@ -2,7 +2,7 @@ package org.youngmonkeys.plugin.controller;
 
 import static com.tvd12.ezyfoxserver.constant.EzyEventNames.USER_LOGIN;
 
-import com.tvd12.ezyfox.sercurity.EzySHA256;
+import com.tvd12.ezyfox.security.EzySHA256;
 import com.tvd12.ezyfoxserver.constant.EzyLoginError;
 import com.tvd12.ezyfoxserver.exception.EzyLoginErrorException;
 import org.youngmonkeys.common.entity.User;
