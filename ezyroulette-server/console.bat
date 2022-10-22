@@ -1,5 +1,5 @@
 @echo off
-set "ezyclasspath=lib\*;common\*;apps\common\*;apps\resources\*"
+set "ezyclasspath=lib\*;settings;common\*;apps\common\*"
 for /D %%d in (plugins\*) do (
     call set "ezyclasspath=%%ezyclasspath%%;%%d\*
 )

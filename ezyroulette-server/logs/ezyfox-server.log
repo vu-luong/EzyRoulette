@@ -1,0 +1,274 @@
+2022-10-23 00:02:18.718 [main] INFO  c.t.e.s.EzySimpleSettingsReader read setting file: settings/ezy-settings.xml
+2022-10-23 00:02:18.853 [main] INFO  com.tvd12.ezyfoxserver.EzyStarter$1 load: apps/entries/EzyRoulette-app-entry
+2022-10-23 00:02:18.855 [main] INFO  com.tvd12.ezyfoxserver.EzyStarter$1 load: apps/entries/hello-world-entry
+2022-10-23 00:02:18.866 [main] INFO  c.t.ezyfoxserver.nio.EzyNioStarter settings: 
+{
+    "settings": {
+        "nodeName": "localhost",
+        "udp": {
+            "channelPoolSize": 16,
+            "codecCreator": "com.tvd12.ezyfox.codec.MsgPackCodecCreator",
+            "address": "0.0.0.0",
+            "maxRequestSize": 1024,
+            "port": 2611,
+            "active": true,
+            "handlerThreadPoolSize": 5
+        },
+        "debug": false,
+        "maxSessions": 999999,
+        "sessionManagement": {
+            "sessionMaxRequestPerSecond": {
+                "action": "DISCONNECT_SESSION",
+                "value": 300
+            },
+            "sessionMaxIdleTime": 150000,
+            "sessionMaxWaitingTimeInSecond": 15,
+            "sessionMaxIdleTimeInSecond": 150,
+            "sessionMaxWaitingTime": 15000
+        },
+        "logger": {
+            "ignoredCommands": "[PING, PONG]"
+        },
+        "zones": {
+            "size": 2,
+            "zones": [{
+                    "maxUsers": 10000,
+                    "userManagement": {
+                        "allowGuestLogin": true,
+                        "userMaxIdleTime": 15000,
+                        "allowChangeSession": true,
+                        "guestNamePrefix": "Guest#",
+                        "maxSessionPerUser": 15,
+                        "userMaxIdleTimeInSecond": 15,
+                        "userNamePattern": "^[a-zA-Z0-9_.#]{3,36}$"
+                    },
+                    "streaming": {
+                        "enable": false
+                    },
+                    "plugins": {
+                        "size": 1,
+                        "plugins": [{
+                                "listenEvents": "[USER_LOGIN, USER_ADDED, USER_REMOVED]",
+                                "folder": "hello-world-plugin",
+                                "threadPoolSize": 3,
+                                "configFile": "config/config.properties",
+                                "name": "hello-world",
+                                "activeProfiles": null,
+                                "entryLoader": "com.example.hello_world.plugin.PluginEntryLoader",
+                                "id": 1,
+                                "packageName": null,
+                                "priority": -1
+                            }]
+                    },
+                    "configFile": "ezy-zone-settings.xml",
+                    "name": "example",
+                    "id": 1,
+                    "eventControllers": {
+                        "eventControllers": []
+                    },
+                    "applications": {
+                        "size": 1,
+                        "apps": [{
+                                "maxUsers": 999999,
+                                "folder": "hello-world-entry",
+                                "threadPoolSize": 3,
+                                "configFile": "config/config.properties",
+                                "name": "hello-world",
+                                "activeProfiles": null,
+                                "entryLoader": "com.example.hello_world.AppEntryLoader",
+                                "id": 1,
+                                "packageName": null
+                            }]
+                    }
+                }, {
+                    "maxUsers": 10000,
+                    "userManagement": {
+                        "allowGuestLogin": true,
+                        "userMaxIdleTime": 15000,
+                        "allowChangeSession": true,
+                        "guestNamePrefix": "Guest#",
+                        "maxSessionPerUser": 15,
+                        "userMaxIdleTimeInSecond": 15,
+                        "userNamePattern": "^[a-zA-Z0-9_.#]{3,36}$"
+                    },
+                    "streaming": {
+                        "enable": true
+                    },
+                    "plugins": {
+                        "size": 1,
+                        "plugins": [{
+                                "listenEvents": "[USER_LOGIN, USER_ADDED, USER_REMOVED]",
+                                "folder": "EzyRoulette-plugin",
+                                "threadPoolSize": 0,
+                                "configFile": "config/config.properties",
+                                "name": "EzyRoulette",
+                                "activeProfiles": null,
+                                "entryLoader": "org.youngmonkeys.plugin.PluginEntryLoader",
+                                "id": 2,
+                                "packageName": null,
+                                "priority": -1
+                            }]
+                    },
+                    "configFile": "EzyRoulette-zone-settings.xml",
+                    "name": "EzyRoulette",
+                    "id": 2,
+                    "eventControllers": {
+                        "eventControllers": []
+                    },
+                    "applications": {
+                        "size": 1,
+                        "apps": [{
+                                "maxUsers": 999999,
+                                "folder": "EzyRoulette-app-entry",
+                                "threadPoolSize": 0,
+                                "configFile": "config/config.properties",
+                                "name": "EzyRoulette",
+                                "activeProfiles": null,
+                                "entryLoader": "org.youngmonkeys.app.AppEntryLoader",
+                                "id": 2,
+                                "packageName": null
+                            }]
+                    }
+                }]
+        },
+        "eventControllers": {
+            "eventControllers": []
+        },
+        "streaming": {
+            "enable": false
+        },
+        "threadPoolSize": {
+            "extensionRequestHandler": 8,
+            "socketUserRemovalHandler": 3,
+            "streamHandler": 8,
+            "socketDisconnectionHandler": 2,
+            "socketDataReceiver": 8,
+            "statistics": 1,
+            "systemRequestHandler": 8
+        },
+        "websocket": {
+            "codecCreator": "com.tvd12.ezyfox.codec.JacksonCodecCreator",
+            "address": "0.0.0.0",
+            "sslConfig": {
+                "file": "ssl-config.properties",
+                "loader": "com.tvd12.ezyfoxserver.ssl.EzySimpleSslConfigLoader",
+                "contextFactoryBuilder": "com.tvd12.ezyfoxserver.ssl.EzySimpleSslContextFactoryBuilder"
+            },
+            "port": 2208,
+            "sslActive": false,
+            "active": true,
+            "sslPort": 2812,
+            "maxFrameSize": 2048,
+            "managementEnable": false,
+            "writerThreadPoolSize": 8
+        },
+        "socket": {
+            "codecCreator": "com.tvd12.ezyfox.codec.MsgPackCodecCreator",
+            "address": "0.0.0.0",
+            "maxRequestSize": 2048,
+            "port": 3005,
+            "sslActive": false,
+            "active": true,
+            "tcpNoDelay": false,
+            "writerThreadPoolSize": 8
+        },
+        "admins": {
+            "count": 1,
+            "admins": [{
+                    "password": "*******",
+                    "accessToken": "*******",
+                    "username": "admin"
+                }]
+        }
+    },
+    "version": "1.0.0",
+    "config": {
+        "loggerConfigFile": "logback.xml",
+        "enableAppClassLoader": true,
+        "ezyfoxHome": ""
+    }
+}
+2022-10-23 00:02:18.966 [main] INFO  c.tvd12.ezyfoxserver.EzyZonesStarter start zones: [EzyRoulette, example]
+2022-10-23 00:02:18.966 [main] INFO  c.tvd12.ezyfoxserver.EzyZonesStarter start all plugins ...
+2022-10-23 00:02:18.966 [main] INFO  c.t.ezyfoxserver.EzyPluginsStarter start plugins: [EzyRoulette]
+2022-10-23 00:02:18.968 [main] INFO  org.youngmonkeys.plugin.PluginEntry 
+=================== EzyRoulette PLUGIN START CONFIG ================
+
+2022-10-23 00:02:19.019 [main] INFO  c.t.e.b.i.EzySimpleBeanContext$Builder active profiles: null
+2022-10-23 00:02:19.188 [main] INFO  org.mongodb.driver.cluster Cluster created with settings {hosts=[127.0.0.1:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2022-10-23 00:02:19.223 [cluster-ClusterId{value='6353f7eb3f116043be3c8339', description='null'}-127.0.0.1:27017] INFO  org.mongodb.driver.connection Opened connection [connectionId{localValue:1, serverValue:26}] to 127.0.0.1:27017
+2022-10-23 00:02:19.226 [cluster-ClusterId{value='6353f7eb3f116043be3c8339', description='null'}-127.0.0.1:27017] INFO  org.mongodb.driver.cluster Monitor thread successfully connected to server with description ServerDescription{address=127.0.0.1:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[5, 0, 2]}, minWireVersion=0, maxWireVersion=13, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=1465545}
+2022-10-23 00:02:19.397 [main] INFO  org.youngmonkeys.plugin.PluginEntry add  event SERVER_READY controller org.youngmonkeys.plugin.controller.ServerReadyController@35eb4a3b
+2022-10-23 00:02:19.397 [main] INFO  org.youngmonkeys.plugin.PluginEntry add  event USER_LOGIN controller org.youngmonkeys.plugin.controller.UserLoginController@716e431d
+2022-10-23 00:02:19.400 [main] INFO  org.youngmonkeys.plugin.PluginEntry 
+=================== EzyRoulette PLUGIN END CONFIG ================
+
+2022-10-23 00:02:19.400 [main] INFO  c.tvd12.ezyfoxserver.EzyZonesStarter start all apps ...
+2022-10-23 00:02:19.400 [main] INFO  c.tvd12.ezyfoxserver.EzyAppsStarter start apps: [EzyRoulette]
+2022-10-23 00:02:19.402 [main] INFO  org.youngmonkeys.app.AppEntry 
+=================== EzyRoulette APP START CONFIG ================
+
+2022-10-23 00:02:19.432 [main] INFO  c.t.e.b.i.EzySimpleBeanContext$Builder active profiles: null
+2022-10-23 00:02:19.439 [main] INFO  org.mongodb.driver.cluster Cluster created with settings {hosts=[127.0.0.1:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2022-10-23 00:02:19.441 [cluster-ClusterId{value='6353f7eb3f116043be3c833a', description='null'}-127.0.0.1:27017] INFO  org.mongodb.driver.connection Opened connection [connectionId{localValue:2, serverValue:27}] to 127.0.0.1:27017
+2022-10-23 00:02:19.443 [cluster-ClusterId{value='6353f7eb3f116043be3c833a', description='null'}-127.0.0.1:27017] INFO  org.mongodb.driver.cluster Monitor thread successfully connected to server with description ServerDescription{address=127.0.0.1:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[5, 0, 2]}, minWireVersion=0, maxWireVersion=13, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=840692}
+2022-10-23 00:02:19.552 [main] INFO  org.mongodb.driver.connection Opened connection [connectionId{localValue:3, serverValue:28}] to 127.0.0.1:27017
+2022-10-23 00:02:19.575 [main] INFO  org.youngmonkeys.app.AppEntry add  event SERVER_READY controller org.youngmonkeys.app.controller.ServerReadyController@2538bc06
+2022-10-23 00:02:19.582 [main] INFO  org.youngmonkeys.app.AppEntry 
+=================== EzyRoulette APP END CONFIG ================
+
+2022-10-23 00:02:19.582 [main] INFO  c.tvd12.ezyfoxserver.EzyZonesStarter start all plugins ...
+2022-10-23 00:02:19.583 [main] INFO  c.t.ezyfoxserver.EzyPluginsStarter start plugins: [hello-world]
+2022-10-23 00:02:19.583 [main] INFO  c.e.hello_world.plugin.PluginEntry 
+=================== HELLO-WORLD PLUGIN START CONFIG ================
+
+2022-10-23 00:02:19.583 [main] WARN  com.tvd12.reflections.Reflections given scan urls are empty. set urls in the configuration
+2022-10-23 00:02:19.586 [main] INFO  c.e.hello_world.plugin.PluginEntry hello-world plugin config file: plugins/hello-world-plugin/config/config.properties
+2022-10-23 00:02:19.586 [main] INFO  c.t.e.b.i.EzySimpleBeanContext$Builder active profiles: null
+2022-10-23 00:02:19.594 [main] INFO  c.e.hello_world.plugin.PluginEntry add  event USER_LOGIN controller com.example.hello_world.plugin.controller.UserLoginController@516462cc
+2022-10-23 00:02:19.594 [main] INFO  c.e.hello_world.plugin.PluginEntry add  event SERVER_READY controller com.example.hello_world.plugin.controller.ServerReadyController@3456558
+2022-10-23 00:02:19.594 [main] INFO  c.e.hello_world.plugin.PluginEntry 
+=================== HELLO-WORLD PLUGIN END CONFIG ================
+
+2022-10-23 00:02:19.594 [main] INFO  c.e.hello_world.plugin.PluginEntry hello-world plugin: start
+2022-10-23 00:02:19.594 [main] INFO  c.tvd12.ezyfoxserver.EzyZonesStarter start all apps ...
+2022-10-23 00:02:19.594 [main] INFO  c.tvd12.ezyfoxserver.EzyAppsStarter start apps: [hello-world]
+2022-10-23 00:02:19.595 [main] INFO  com.example.hello_world.AppEntry 
+=================== HELLO-WORD APP START CONFIG ================
+
+2022-10-23 00:02:19.616 [main] INFO  com.example.hello_world.AppEntry hello-word app config file: apps/entries/hello-world-entry/config/config.properties
+2022-10-23 00:02:19.616 [main] INFO  c.t.e.b.i.EzySimpleBeanContext$Builder active profiles: null
+2022-10-23 00:02:19.645 [main] INFO  com.example.hello_world.AppEntry add  event SERVER_READY controller com.example.hello_world.controller.ServerReadyController@ceddaf8
+2022-10-23 00:02:19.646 [main] INFO  com.example.hello_world.AppEntry 
+=================== HELLO-WORD APP END CONFIG ================
+
+2022-10-23 00:02:19.647 [main] INFO  com.example.hello_world.AppEntry start hello-world app
+2022-10-23 00:02:19.673 [main] INFO  org.eclipse.jetty.util.log Logging initialized @1434ms to org.eclipse.jetty.util.log.Slf4jLog
+2022-10-23 00:02:19.703 [main] INFO  org.eclipse.jetty.server.Server jetty-9.4.46.v20220331; built: 2022-03-31T16:38:08.030Z; git: bc17a0369a11ecf40bb92c839b9ef0a8ac50ea18; jvm 11.0.16+8-post-Ubuntu-0ubuntu120.04
+2022-10-23 00:02:19.724 [main] INFO  o.e.j.server.handler.ContextHandler Started o.e.j.s.h.ContextHandler@3aaa3c39{/ws,null,AVAILABLE}
+2022-10-23 00:02:19.728 [main] INFO  o.e.jetty.server.AbstractConnector Started ServerConnector@999b951{HTTP/1.1, (http/1.1)}{0.0.0.0:2208}
+2022-10-23 00:02:19.728 [main] INFO  org.eclipse.jetty.server.Server Started @1489ms
+2022-10-23 00:02:19.740 [main] INFO  c.t.e.nio.EzyNioServerBootstrap 
+
+  ______ ________     ________ ______   __           _____  ______          _______     __
+ |  ____|___  /\ \   / /  ____/ __ \ \ / /          |  __ \|  ____|   /\   |  __ \ \   / /
+ | |__     / /  \ \_/ /| |__ | |  | \ V /   ______  | |__) | |__     /  \  | |  | \ \_/ / 
+ |  __|   / /    \   / |  __|| |  | |> <   |______| |  _  /|  __|   / /\ \ | |  | |\   /  
+ | |____ / /__    | |  | |   | |__| / . \           | | \ \| |____ / ____ \| |__| | | |   
+ |______/_____|   |_|  |_|    \____/_/ \_\          |_|  \_\______/_/    \_\_____/  |_|   
+                                                                                          
+                                                                                          
+
+
+2022-10-23 00:02:19.740 [main] INFO  c.e.h.p.c.ServerReadyController hello-world plugin: fire custom plugin ready, config: PluginConfig(environment=local, database=PluginConfig.DatabaseConfig(name=hello-world, host=localhost, port=27017))
+2022-10-23 00:02:19.741 [main] INFO  c.e.h.c.ServerReadyController hello-world app: fire custom app ready, node name: localhost
+2022-10-23 00:02:19.741 [main] INFO  o.y.p.c.ServerReadyController EzyRoulette plugin: fire custom app ready
+2022-10-23 00:02:19.741 [main] INFO  o.y.a.c.ServerReadyController EzyRoulette app: fire custom app ready
+2022-10-23 00:03:04.910 [ezyfox-socket-reader-16-1] INFO  c.t.e.n.w.i.EzyNioSessionManagerImpl provide session: Session#1(owner: null, address: /127.0.0.1:46882), sessions size = 1
+2022-10-23 00:03:04.930 [ezyfox-system-request-handler-21-2] INFO  o.y.p.controller.UserLoginController Welcome test2! login in
+2022-10-23 00:03:04.955 [ezyfox-system-request-handler-21-2] INFO  org.mongodb.driver.connection Opened connection [connectionId{localValue:4, serverValue:29}] to 127.0.0.1:27017
+2022-10-23 00:03:04.956 [ezyfox-system-request-handler-21-2] INFO  o.y.p.controller.UserLoginController user doesn't exist in db, create a new one!
+2022-10-23 00:03:04.968 [ezyfox-system-request-handler-21-2] INFO  o.y.p.controller.UserLoginController user and password match, accept user test2
+2022-10-23 00:03:04.970 [ezyfox-system-request-handler-21-2] INFO  c.t.e.w.impl.EzyZoneUserManagerImpl zone: EzyRoulette add user: test2, locks.size = 1, usersById.size = 1, usersByName.size = 1
+2022-10-23 00:03:04.975 [ezyfox-system-request-handler-21-3] INFO  c.t.e.w.impl.EzyAppUserManagerImpl app: EzyRoulette add user: test2, locks.size = 1, usersById.size = 1, usersByName.size = 1
+2022-10-23 00:03:05.706 [ezyfox-extension-request-handler-22-7] INFO  o.y.a.c.GameRequestController user test2 spin, prize result = 0

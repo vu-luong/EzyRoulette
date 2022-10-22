@@ -43,7 +43,7 @@ JAVA_OPTS="${JAVA_OPTS} -Dcom.sun.management.jmxremote.local.only=false"
 JAVA_OPTS="${JAVA_OPTS} -Dcom.sun.management.jmxremote.authenticate=false"
 JAVA_OPTS="${JAVA_OPTS} -Dcom.sun.management.jmxremote.ssl=false -Djava.rmi.server.hostname=127.0.0.1 -Djava.rmi.activation.port=1099"
 
-CLASSPATH="lib/*:common/*:apps/common/*:apps/resources/*"
+CLASSPATH="lib/*:settings:common/*:apps/common/*"
 for dir in "$EZYFOX_SERVER_HOME"/plugins/*
 do
   CLASSPATH="$CLASSPATH:plugins/${dir##*/}/*"
@@ -64,7 +64,7 @@ fi
 
 if [ -z "${PID}" ]; then
     echo "Process id for ezyfox server instance is written to file: $PID_FILE"
-    java $1 -cp $CLASSPATH $JAVA_OPTS com.tvd12.ezyfoxserver.nio.EzyNioRunner $EZYFOX_SERVER_HOME/settings/config.properties > /dev/null 2>&1 &
+    java -cp $CLASSPATH $JAVA_OPTS com.tvd12.ezyfoxserver.nio.EzyNioRunner $EZYFOX_SERVER_HOME/settings/config.properties > /dev/null 2>&1 &
     echo $! > ${PID_FILE}
 else
     echo "Another ezyfox server instance is already started in this folder. To start a new instance, please run in a new folder."
